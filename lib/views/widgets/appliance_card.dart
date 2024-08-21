@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:remote_home/screens/screens.dart';
+import 'package:get/get.dart';
+import 'package:remote_home/controllers/controllers.dart';
+// import 'package:get/get.dart';
+import 'package:remote_home/models/models.dart';
+import 'package:remote_home/views/screens/screens.dart';
 import 'package:remote_home/utils/utils.dart';
 import 'widgets.dart';
 
 class ApplianceCard extends StatelessWidget {
-  const ApplianceCard(
-      {super.key,
-      required this.title,
-      required this.icon,
-      required this.wattage,
-      required this.duration,
-      this.active = false});
+  const ApplianceCard({super.key, required this.appliance});
 
-  final String title, wattage, duration;
-  final IconData icon;
-  final bool active;
+  final Appliance appliance;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return ApplianceScreen(
-            title: title,
-          );
+          return ApplianceScreen(appliance: appliance);
         }));
       },
       child: Container(
@@ -39,26 +33,29 @@ class ApplianceCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 FilledIcon(
-                  icon: icon,
+                  icon: appliance.icon,
                   iconColor: Colours.blue,
                 ),
                 ToggleButton(
-                  state: active,
-                )
+                  state: appliance.isOn,
+                  onChanged: (val) {
+                    appliance.toggle(val);
+                  },
+                ),
               ],
             ),
             const SizedBox(height: Dimensions.smallSize),
             Text(
-              title,
+              appliance.name,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             Text(
-              "Consuming $wattage",
+              "Consuming ${appliance.wattage.round()}kWh",
               style: const TextStyle(color: Colours.grey),
             ),
             const SizedBox(height: Dimensions.smallSize),
             Text(
-              duration,
+              appliance.getRunTime(),
               style: const TextStyle(color: Colours.blue, fontSize: 12),
             ),
           ],

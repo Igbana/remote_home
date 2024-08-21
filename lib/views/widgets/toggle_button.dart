@@ -2,12 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ToggleButton extends StatefulWidget {
-  const ToggleButton({
-    super.key,
-    this.state = false,
-  });
-
+  const ToggleButton({super.key, this.state = false, required this.onChanged});
   final bool state;
+  final Function(bool state) onChanged;
 
   @override
   State<ToggleButton> createState() => _ToggleButtonState();
@@ -31,6 +28,7 @@ class _ToggleButtonState extends State<ToggleButton> {
           onChanged: (val) {
             setState(() {
               state = !state;
+              widget.onChanged(val);
             });
           }),
     );

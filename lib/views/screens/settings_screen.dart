@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:remote_home/widgets/widgets.dart';
 import 'package:remote_home/utils/utils.dart';
+import '../widgets/widgets.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({

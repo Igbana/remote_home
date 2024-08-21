@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'screens/screens.dart';
+import 'views/screens/screens.dart';
 
 void main() {
   runApp(
     MaterialApp(
-      theme:
-          ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
-      home: const Scaffold(
-        body: HomePage(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
+      home: const SplashScreen(),
     ),
   );
 }
 
-/*
-::TODO::
-[] Download icons for the app
-[] Add animations
-[] Create mock data and mock endpoints
-[] Setup doughnut
-[] Plan mockup for the second page
-*/
+/**
+ * [] Update card on state change
+ * [] Animate images depending on the toggle state
+ */
