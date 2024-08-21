@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:remote_home/controllers/controllers.dart';
 // import 'package:get/get.dart';
 import 'package:remote_home/models/models.dart';
 import 'package:remote_home/views/screens/screens.dart';

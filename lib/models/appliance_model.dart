@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:remote_home/controllers/home_controller.dart';
 import 'package:remote_home/models/schedule_time.dart';
 
 class Appliance {

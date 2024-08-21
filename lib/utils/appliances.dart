@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:remote_home/models/models.dart';
-import 'package:remote_home/views/widgets/add_appliance_card.dart';
 
 final List<Appliance> appliances = [
   Appliance(
