@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:remote_home/controllers/controllers.dart';
 // import 'package:get/get.dart';
 import 'package:remote_home/models/models.dart';
 import 'package:remote_home/views/screens/screens.dart';
@@ -12,6 +14,7 @@ class ApplianceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var homeController = Get.put(HomeController());
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
@@ -34,11 +37,16 @@ class ApplianceCard extends StatelessWidget {
                   icon: appliance.icon,
                   iconColor: Colours.blue,
                 ),
-                ToggleButton(
-                  state: appliance.isOn,
-                  onChanged: (val) {
-                    appliance.toggle(val);
-                  },
+                Obx(
+                  () => ToggleButton(
+                    state: homeController
+                        .toggleStates[appliances.indexOf(appliance)].value,
+                    onChanged: (val) {
+                      appliance.toggle(val);
+                      homeController.toggleStates[appliances.indexOf(appliance)]
+                          .value = val;
+                    },
+                  ),
                 ),
               ],
             ),

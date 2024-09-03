@@ -50,7 +50,6 @@ class _ApplianceSectionState extends State<ApplianceSection>
   @override
   Widget build(BuildContext context) {
     controller.forward();
-    initController();
     return Flexible(
       child: GridView.builder(
           shrinkWrap: true,

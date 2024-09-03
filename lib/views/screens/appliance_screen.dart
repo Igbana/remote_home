@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:remote_home/controllers/controllers.dart';
 // import 'package:get/get.dart';
 import 'package:remote_home/models/models.dart';
 import 'package:remote_home/utils/dimensions.dart';
+import 'package:remote_home/utils/utils.dart';
 import '../widgets/widgets.dart';
 
 class ApplianceScreen extends StatefulWidget {
@@ -20,6 +23,7 @@ class _ApplianceScreenState extends State<ApplianceScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    var homeController = Get.put(HomeController());
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 90,
@@ -36,11 +40,17 @@ class _ApplianceScreenState extends State<ApplianceScreen> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 12.0),
-            child: ToggleButton(
-              state: widget.appliance.isOn,
-              onChanged: (state) {
-                widget.appliance.toggle(state);
-              },
+            child: Obx(
+              () => ToggleButton(
+                state: homeController
+                    .toggleStates[appliances.indexOf(widget.appliance)].value,
+                onChanged: (state) {
+                  widget.appliance.toggle(state);
+                  homeController
+                      .toggleStates[appliances.indexOf(widget.appliance)]
+                      .value = state;
+                },
+              ),
             ),
           ),
         ],

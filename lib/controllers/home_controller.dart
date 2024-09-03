@@ -10,3 +10,8 @@ void initController() {
     toggleStates.add(app.isOn.obs);
   }
 }
+
+class HomeController extends GetxController {
+  List<RxBool> toggleStates =
+      List.generate(appliances.length, (index) => appliances[index].isOn.obs);
+}
